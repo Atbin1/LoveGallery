@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0">
     <title>گالری عشق</title>
     <style>
         @font-face {
@@ -41,37 +41,44 @@
         }
         header {
             top: 10px;
-            font-size: 1.5rem;
-            color: #ff69b4;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+            font-size: 1rem; /* کاهش اندازه متن */
+            color: #ff1493;
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.8), 0 0 20px rgba(255, 20, 147, 0.5);
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInHeader 2s ease-in-out;
         }
         footer {
             bottom: 10px;
-            font-size: 0.8rem;
+            font-size: 0.8rem; /* کاهش اندازه متن */
             color: rgba(255, 255, 255, 0.6);
         }
         h1 {
-            font-size: 3rem;
+            font-size: 1.1rem; /* کاهش اندازه متن */
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
             animation: fadeIn 2s ease-in-out;
+            color: #ff1493;
+            margin-top: 20px;
         }
         .btn-container {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 10px; /* کاهش فاصله دکمه‌ها */
         }
         .btn {
-            padding: 15px 30px;
+            padding: 8px 12px; /* کمی کوچکتر کردن دکمه‌ها */
             background: rgba(255, 255, 255, 0.2);
             color: #fff;
-            border: 2px solid #fff;
-            border-radius: 30px;
+            border: 2px solid #ff1493;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 0.7rem; /* کاهش اندازه متن دکمه‌ها */
             transition: background 0.3s, transform 0.3s;
         }
         .btn:hover {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             transform: scale(1.1);
         }
         .gallery {
@@ -82,28 +89,33 @@
             margin-top: 20px;
         }
         .gallery-item {
-            font-size: 1.2rem;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            width: 130px; /* کمی کوچکتر کردن اندازه تصاویر گالری */
+            height: auto;
             border-radius: 15px;
-            text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            object-fit: cover;
         }
         .gallery-item:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
         #love-date {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1rem; /* کمی کوچکتر کردن متن */
             text-align: center;
             animation: fadeInUp 1.5s ease-in-out;
-            margin-top: 20px;
+            margin-top: 10px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
+            color: #ff1493;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        #love-date:hover {
+            transform: scale(1.05);
         }
         .audio-controls {
             position: fixed;
@@ -112,17 +124,17 @@
             z-index: 1;
         }
         .audio-controls button {
-            padding: 10px 15px;
+            padding: 8px 12px; /* کمی کوچکتر کردن دکمه‌ها */
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ff69b4;
-            font-size: 1.2rem;
-            color: #ff69b4;
+            border: 2px solid #ff1493;
+            font-size: 1rem; /* کمی کوچکتر کردن اندازه دکمه‌های صوتی */
+            color: #ff1493;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s;
         }
         .audio-controls button:hover {
-            background: #ff69b4;
+            background: #ff1493;
             color: #fff;
             transform: scale(1.1);
         }
@@ -132,6 +144,16 @@
             }
             to {
                 opacity: 1;
+            }
+        }
+        @keyframes fadeInHeader {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         @keyframes fadeInUp {
@@ -144,6 +166,31 @@
                 transform: translateY(0);
             }
         }
+
+        /* Media Queries for Mobile Devices */
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: 110px; /* اندازه تصاویر را برای صفحه‌های کوچکتر تغییر می‌دهیم */
+            }
+            h1 {
+                font-size: 1rem; /* تغییر اندازه فونت */
+            }
+            .btn {
+                font-size: 0.6rem; /* تغییر اندازه فونت دکمه‌ها */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: 100px; /* اندازه تصاویر کوچکتر می‌شود */
+            }
+            h1 {
+                font-size: 0.9rem; /* کاهش اندازه فونت */
+            }
+            .btn {
+                font-size: 0.5rem; /* کاهش اندازه فونت دکمه‌ها */
+            }
+        }
     </style>
 </head>
 <body>
@@ -152,21 +199,22 @@
     </video>
 
     <header>تقدیم به حنانه</header>
-    <h1>به گالری عشق خوش آمدی</h1>
+    <h1>به گالری عشق خوش آمدید</h1>
     <div class="btn-container">
         <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
         <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
     </div>
     <div class="gallery" id="gallery">
-        <div class="gallery-item">کیف کنفی</div>
-        <div class="gallery-item">جاسوئیچی H</div>
-        <div class="gallery-item">عطر ۱۰ میل</div>
-        <div class="gallery-item">قاب طرح قلب</div>
-        <div class="gallery-item">چراغ خواب ماه</div>
-        <div class="gallery-item">انگشتر</div>
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/%D8%B3%D8%A7%D8%B9%D8%AA-%DA%AF%D8%B1%D8%AF%D9%86%DB%8C-%D8%AF%D8%AE%D8%AA%D8%B1%D8%A7%D9%86%D9%87-3.jpg" alt="ساعت گردنی دخترانه">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/images.jpeg" alt="تصویر تصاویر">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/a7VcNRE9bE1oaXi7W70P3tPucf8QjSWhnKQC1PwcEV4J6B0Jw1.jpg_256X256X70.jpg" alt="تصویر محصول">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/RE-B53.jpg" alt="تصویر RE-B53">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/Buy-Price-Hello-Kitty-3D-Phone-Case-for-Xiaomi-Redmi-Note-9-Pro-Max-4.jpg" alt="تصویر قاب گوشی">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/IMG_20241213_130606_224.jpg" alt="تصویر IMG">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/142-%D8%B9%D8%B7%D8%B1-%D9%88%D9%8A%D8%A7%D9%84-%DB%B1%DB%B0-%D9%85%D9%8A%D9%84.jpg" alt="عطر و ویال ۱۰ میل">
     </div>
     <div id="love-date">
-        ما از قبل از عید با هم آشنا شدیم و عشق ما هر روز قوی‌تر می‌شود ❤️
+        <p>ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم. تاریخ 1401</p>
     </div>
     <footer>تمام حقوق محفوظ است</footer>
     <div class="audio-controls">
