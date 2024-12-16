@@ -2,8 +2,8 @@
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0">
-    <title>گالری عشق</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت از دسترس خارج شد</title>
     <style>
         @font-face {
             font-family: 'Vazir';
@@ -13,237 +13,66 @@
             font-family: 'Vazir', sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden;
             background: black;
-            height: 100vh;
-            color: #fff;
+            color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
-        #bg-video {
+        video#bg-video {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(8px) brightness(0.6);
+            filter: blur(8px) brightness(0.5);
             z-index: -1;
         }
-        header, footer {
-            position: fixed;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            z-index: 2;
-        }
-        header {
-            top: 10px;
-            font-size: 1rem; /* کاهش اندازه متن */
+        h1 {
+            font-size: 2rem;
             color: #ff1493;
             text-shadow: 0 0 10px rgba(255, 20, 147, 0.8), 0 0 20px rgba(255, 20, 147, 0.5);
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: fadeInHeader 2s ease-in-out;
+            margin-bottom: 20px;
         }
-        footer {
-            bottom: 10px;
-            font-size: 0.8rem; /* کاهش اندازه متن */
-            color: rgba(255, 255, 255, 0.6);
-        }
-        h1 {
-            font-size: 1.1rem; /* کاهش اندازه متن */
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-            animation: fadeIn 2s ease-in-out;
-            color: #ff1493;
-            margin-top: 20px;
-        }
-        .btn-container {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px; /* کاهش فاصله دکمه‌ها */
-        }
-        .btn {
-            padding: 8px 12px; /* کمی کوچکتر کردن دکمه‌ها */
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border: 2px solid #ff1493;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.7rem; /* کاهش اندازه متن دکمه‌ها */
-            transition: background 0.3s, transform 0.3s;
-        }
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.1);
-        }
-        .gallery {
-            display: none;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .gallery-item {
-            width: 130px; /* کمی کوچکتر کردن اندازه تصاویر گالری */
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            object-fit: cover;
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-        }
-        #love-date {
-            display: none;
-            font-size: 1rem; /* کمی کوچکتر کردن متن */
+        p {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 40px;
             text-align: center;
-            animation: fadeInUp 1.5s ease-in-out;
-            margin-top: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 12px;
-            border-radius: 10px;
-            color: #ff1493;
-            font-weight: bold;
-            transition: transform 0.3s;
         }
-        #love-date:hover {
-            transform: scale(1.05);
+        .emoji-container {
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            animation: float 2s infinite ease-in-out;
         }
-        .audio-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1;
+        .emoji {
+            margin: 0 10px;
         }
-        .audio-controls button {
-            padding: 8px 12px; /* کمی کوچکتر کردن دکمه‌ها */
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ff1493;
-            font-size: 1rem; /* کمی کوچکتر کردن اندازه دکمه‌های صوتی */
-            color: #ff1493;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .audio-controls button:hover {
-            background: #ff1493;
-            color: #fff;
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes fadeInHeader {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
+        @keyframes float {
+            0%, 100% {
                 transform: translateY(0);
             }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Media Queries for Mobile Devices */
-        @media (max-width: 768px) {
-            .gallery-item {
-                width: 110px; /* اندازه تصاویر را برای صفحه‌های کوچکتر تغییر می‌دهیم */
-            }
-            h1 {
-                font-size: 1rem; /* تغییر اندازه فونت */
-            }
-            .btn {
-                font-size: 0.6rem; /* تغییر اندازه فونت دکمه‌ها */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-item {
-                width: 100px; /* اندازه تصاویر کوچکتر می‌شود */
-            }
-            h1 {
-                font-size: 0.9rem; /* کاهش اندازه فونت */
-            }
-            .btn {
-                font-size: 0.5rem; /* کاهش اندازه فونت دکمه‌ها */
+            50% {
+                transform: translateY(-10px);
             }
         }
     </style>
 </head>
 <body>
     <video id="bg-video" autoplay loop muted>
-        <source src="https://github.com/Atbin1/LoveGallery/raw/refs/heads/main/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
+        <source src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
     </video>
-
-    <header>تقدیم به حنانه</header>
-    <h1>به گالری عشق خوش آمدید</h1>
-    <div class="btn-container">
-        <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
-        <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
+    <h1>سایت موقتاً در دسترس نیست</h1>
+    <p>.لطفاً بعداً تلاش کنید</p>
+    <div class="emoji-container">
+        <span class="emoji">🤖</span>
+        <span class="emoji">💻</span>
+        <span class="emoji">🤖</span>
     </div>
-    <div class="gallery" id="gallery">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/%D8%B3%D8%A7%D8%B9%D8%AA-%DA%AF%D8%B1%D8%AF%D9%86%DB%8C-%D8%AF%D8%AE%D8%AA%D8%B1%D8%A7%D9%86%D9%87-3.jpg" alt="ساعت گردنی دخترانه">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/images.jpeg" alt="تصویر تصاویر">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/a7VcNRE9bE1oaXi7W70P3tPucf8QjSWhnKQC1PwcEV4J6B0Jw1.jpg_256X256X70.jpg" alt="تصویر محصول">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/RE-B53.jpg" alt="تصویر RE-B53">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/Buy-Price-Hello-Kitty-3D-Phone-Case-for-Xiaomi-Redmi-Note-9-Pro-Max-4.jpg" alt="تصویر قاب گوشی">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/IMG_20241213_130606_224.jpg" alt="تصویر IMG">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/142-%D8%B9%D8%B7%D8%B1-%D9%88%D9%8A%D8%A7%D9%84-%DB%B1%DB%B0-%D9%85%D9%8A%D9%84.jpg" alt="عطر و ویال ۱۰ میل">
-    </div>
-    <div id="love-date">
-        <p>ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم. تاریخ 1401</p>
-    </div>
-    <footer>تمام حقوق محفوظ است</footer>
-    <div class="audio-controls">
-        <button onclick="toggleAudio()">🎵</button>
-        <audio id="audio" loop>
-            <source src="https://dl.mp3index.ir/teerex/2024/04/26/onwave-parvardegar.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <script>
-        const gallery = document.getElementById('gallery');
-        const loveDate = document.getElementById('love-date');
-        const audio = document.getElementById('audio');
-
-        function toggleGallery() {
-            gallery.style.display = gallery.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        function showLoveDate() {
-            loveDate.style.display = loveDate.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function toggleAudio() {
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-    </script>
 </body>
 </html>
