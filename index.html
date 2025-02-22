@@ -1,71 +1,53 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0" />
-  <title>گالری عشق</title>
-  <!-- لینک به فایل CSS -->
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0">
+    <title>گالری عشق</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- ویدیو پس‌زمینه -->
-  <video id="bg-video" autoplay loop muted>
-    <!-- مطابق نام فایل: rainy_shiraz.webm -->
-    <source src="media/video/rainy_shiraz.webm" type="video/webm" />
-    مرورگر شما از فرمت ویدئو پشتیبانی نمی‌کند.
-  </video>
+    <video id="bg-video" autoplay loop muted>
+        <source src="media/video/rainy_shiraz.webm" type="video/webm">
+    </video>
 
-  <header>تقدیم به حنانه</header>
-  <h1>به گالری عشق خوش آمدید</h1>
+    <header>تقدیم به حنانه</header>
+    <h1>به گالری عشق خوش آمدید</h1>
+    <div class="btn-container">
+        <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
+        <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
+    </div>
 
-  <div class="btn-container">
-    <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
-    <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
-  </div>
+    <div class="gallery" id="gallery">
+        <img class="gallery-item" src="media/images/saate-gardani.jpg" alt="ساعت گردنبندی">
+        <img class="gallery-item" src="media/images/images.jpeg" alt="تصویر تصاویر">
+        <img class="gallery-item" src="media/images/a7VcNRE9bE1oaXi7.jpg" alt="تصویر محصول">
+        <img class="gallery-item" src="media/images/RE-B53.jpg" alt="تصویر RE-B53">
+        <img class="gallery-item" src="media/images/Buy-Price-Hello-Kitty.jpg" alt="تصویر قاب گوشی">
+        <img class="gallery-item" src="media/images/IMG_20241213_130606_224.jpg" alt="تصویر IMG">
+        <img class="gallery-item" src="media/images/atr-vial-100ml.jpg" alt="عطر و ویال ۱۰ میل">
+    </div>
 
-  <!-- گالری تصاویر -->
-  <div class="gallery" id="gallery">
-    <!-- فقط دو عکسی که گفتید لود نمی‌شد را اینجا قرار می‌دهیم -->
-    <img
-      class="gallery-item"
-      src="media/images/atr-vial-100ml.jpg"
-      alt="عطر ویال 100 میلی‌لیتر"
-    />
-    <img
-      class="gallery-item"
-      src="media/images/saate-gardani.jpg"
-      alt="ساعت گردنی دخترانه"
-    />
-  </div>
+    <div id="love-date">
+        <p id="love-date-text">ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم.</p>
+    </div>
 
-  <div id="love-date">
-    <p id="love-date-text">
-      ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم. تاریخ 1401
-    </p>
-  </div>
+    <footer>تمام حقوق محفوظ است</footer>
 
-  <footer>تمام حقوق محفوظ است</footer>
+    <div class="audio-controls">
+        <button onclick="toggleAudio()">🎵</button>
+        <audio id="audio" loop>
+            <source src="media/audio/haydeh_ahmad_hoosh.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-  <!-- کنترل صوتی -->
-  <div class="audio-controls">
-    <button onclick="toggleAudio()">🎵</button>
-    <audio id="audio" loop>
-      <!-- مطابق نام فایل: haydeh_ahmad_hoosh.mp3 -->
-      <source src="media/audio/haydeh_ahmad_hoosh.mp3" type="audio/mpeg" />
-      مرورگر شما از فایل صوتی پشتیبانی نمی‌کند.
-    </audio>
-  </div>
+    <div id="iran-time"></div>
 
-  <!-- نمایش تاریخ به وقت ایران -->
-  <div id="iran-time"></div>
+    <div class="menu-btn" onclick="toggleMenu()">&#x2022;&#x2022;&#x2022;</div>
+    <div class="menu" id="menu">
+        <a href="#">این بخش به زودی فعال خواهد شد</a>
+    </div>
 
-  <!-- منوی سه نقطه -->
-  <div class="menu-btn" onclick="toggleMenu()">&#x2022;&#x2022;&#x2022;</div>
-  <div class="menu" id="menu">
-    <a href="#">این بخش به زودی فعال خواهد شد</a>
-  </div>
-
-  <!-- فایل جاوااسکریپت -->
-  <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
-  </html>
+          </html>
