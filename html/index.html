@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0">
+    <title>گالری عشق</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <video id="bg-video" autoplay loop muted>
+        <source src="../media/video/background-video.webm" type="video/webm">
+    </video>
+    <header>تقدیم به حنانه</header>
+    <h1>به گالری عشق خوش آمدید</h1>
+    <div class="btn-container">
+        <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
+        <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
+    </div>
+    <div class="gallery" id="gallery">
+        <img class="gallery-item" src="../media/images/image1.jpg" alt="تصویر ۱">
+        <img class="gallery-item" src="../media/images/image2.jpg" alt="تصویر ۲">
+    </div>
+    <div id="love-date">
+        <p id="love-date-text">ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم.</p>
+    </div>
+    <footer>تمام حقوق محفوظ است</footer>
+    <div class="audio-controls">
+        <button onclick="toggleAudio()">🎵</button>
+        <audio id="audio" loop>
+            <source src="../media/audio/background-music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+</html>

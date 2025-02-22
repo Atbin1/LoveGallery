@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Vazir';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+}
+body {
+    font-family: 'Vazir', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+    text-align: center;
+}
+.gallery {
+    display: none;
+}
+.btn {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #ff1493;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: background 0.3s, transform 0.3s;
+}
+.btn:hover {
+    background: rgba(255, 255, 0, 0.4);
+    transform: scale(1.1);
+}
