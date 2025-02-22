@@ -2,29 +2,44 @@
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0">
+    <title>گالری عشق</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>گالری عشق</h1>
-
-    <h2>تصاویر</h2>
-    <img src="media/images/atr-vial-100ml.jpg" alt="عطر ویال 100 میلی‌لیتر">
-    <img src="media/images/saate-gardani.jpg" alt="ساعت گردنی دخترانه">
-
-    <h2>ویدئو</h2>
-    <video controls>
-        <source src="media/video/Rainy_weather_in_Shiraz_هوای_بارونی_شیراز_☔️🌧.webm" type="video/webm">
-        مرورگر شما از ویدئو پشتیبانی نمی‌کند.
+    <video id="bg-video" autoplay loop muted>
+        <source src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/media/video/Rainy_weather_in_Shiraz_هوای_بارونی_شیراز_☔️🌧.webm" type="video/webm">
     </video>
 
-    <h2>موسیقی</h2>
-    <audio controls>
-        <source src="media/audio/Haydeh_x_Ahmad_Solo_Hosh_Masnoei_(1).mp3" type="audio/mpeg">
-        مرورگر شما از فایل صوتی پشتیبانی نمی‌کند.
-    </audio>
+    <header>تقدیم به حنانه</header>
+    <h1>به گالری عشق خوش آمدید</h1>
+    
+    <div class="btn-container">
+        <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
+        <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/media/images/atr-vial-100ml.jpg" alt="عطر">
+        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/media/images/saate-gardani.jpg" alt="ساعت گردنی">
+    </div>
+
+    <div id="love-date">
+        <p id="love-date-text"></p>
+    </div>
+
+    <footer>تمام حقوق محفوظ است</footer>
+
+    <div class="audio-controls">
+        <button onclick="toggleAudio()">🎵</button>
+        <audio id="audio" loop>
+            <source src="https://dl.mp3index.ir/teerex/2024/04/26/onwave-parvardegar.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="iran-time"></div>
 
     <script src="js/script.js"></script>
 </body>
-</html>
+        </html>
