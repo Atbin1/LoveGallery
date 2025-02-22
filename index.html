@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0">
-    <title>گالری عشق</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0" />
+  <title>گالری عشق</title>
+  <!-- لینک به فایل CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <video id="bg-video" autoplay loop muted>
-        <source src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/media/video/Rainy_weather_in_Shiraz_هوای_بارونی_شیراز_☔️🌧.webm" type="video/webm">
-    </video>
+  <!-- ویدیو پس‌زمینه -->
+  <video id="bg-video" autoplay loop muted>
+    <source src="media/video/rainy_shiraz.webm" type="video/webm" />
+    مرورگر شما از فرمت ویدئو پشتیبانی نمی‌کند.
+  </video>
 
-    <header>تقدیم به حنانه</header>
-    <h1>به گالری عشق خوش آمدید</h1>
-    
-    <div class="btn-container">
-        <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
-        <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
-    </div>
+  <header>تقدیم به حنانه</header>
+  <h1>به گالری عشق خوش آمدید</h1>
 
-    <div class="gallery" id="gallery">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/media/images/atr-vial-100ml.jpg" alt="عطر">
-        <img class="gallery-item" src="https://raw.githubusercontent.com/Atbin1/LoveGallery/main/media/images/saate-gardani.jpg" alt="ساعت گردنی">
-    </div>
+  <div class="btn-container">
+    <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
+    <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
+  </div>
 
-    <div id="love-date">
-        <p id="love-date-text"></p>
-    </div>
+  <!-- گالری تصاویر -->
+  <div class="gallery" id="gallery">
+    <img class="gallery-item" src="media/images/a7VcNRE9bE1oaXi7W70P3tPucf8QjSWhnKQC1PwcEV4J6B0Jw1.jpg_256X256X70.jpg" alt="تصویر 1">
+    <img class="gallery-item" src="media/images/atr-vial-100ml.jpg" alt="عطر ویال 100 میلی‌لیتر">
+    <img class="gallery-item" src="media/images/Buy-Price-Hello-Kitty-3D-Phone-Case-for-Xiaomi-Redmi-Note-9-Pro-Max-4.jpg" alt="تصویر قاب گوشی">
+    <img class="gallery-item" src="media/images/IMG_20241213_130606_224.jpg" alt="تصویر IMG">
+    <img class="gallery-item" src="media/images/RE-B53.jpg" alt="تصویر RE-B53">
+    <img class="gallery-item" src="media/images/saate-gardani.jpg" alt="ساعت گردنی">
+    <img class="gallery-item" src="media/images/142-عطر-ويال-۱۰-ميل.jpg" alt="عطر و ویال ۱۰ میل">
+  </div>
 
-    <footer>تمام حقوق محفوظ است</footer>
+  <div id="love-date">
+    <p id="love-date-text">
+      ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم. تاریخ 1401
+    </p>
+  </div>
 
-    <div class="audio-controls">
-        <button onclick="toggleAudio()">🎵</button>
-        <audio id="audio" loop>
-            <source src="https://dl.mp3index.ir/teerex/2024/04/26/onwave-parvardegar.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+  <footer>تمام حقوق محفوظ است</footer>
 
-    <div id="iran-time"></div>
+  <!-- کنترل صوتی -->
+  <div class="audio-controls">
+    <button onclick="toggleAudio()">🎵</button>
+    <audio id="audio" loop>
+      <source src="media/audio/haydeh_ahmad_hoosh.mp3" type="audio/mpeg" />
+      مرورگر شما از فایل صوتی پشتیبانی نمی‌کند.
+    </audio>
+  </div>
 
-    <script src="js/script.js"></script>
+  <!-- نمایش تاریخ به وقت ایران -->
+  <div id="iran-time"></div>
+
+  <!-- منوی سه نقطه -->
+  <div class="menu-btn" onclick="toggleMenu()">&#x2022;&#x2022;&#x2022;</div>
+  <div class="menu" id="menu">
+    <a href="#">این بخش به زودی فعال خواهد شد</a>
+  </div>
+
+  <!-- فایل جاوااسکریپت -->
+  <script src="js/script.js"></script>
 </body>
         </html>
