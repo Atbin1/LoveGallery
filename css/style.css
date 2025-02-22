@@ -48,165 +48,78 @@ footer {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.6);
 }
-h1 {
-    font-size: 1.1rem;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    animation: fadeIn 2s ease-in-out;
+
+/* اضافه کردن افکت‌های جدید */
+.neon-text {
     color: #ff1493;
-    margin-top: 20px;
+    text-shadow: 0 0 5px #ff1493, 0 0 10px #ff1493, 0 0 15px #ff1493, 0 0 20px #ff1493;
+    font-weight: bold;
+    animation: neon-glow 1.5s infinite alternate;
 }
-.btn-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+@keyframes neon-glow {
+    from { text-shadow: 0 0 5px #ff1493, 0 0 10px #ff1493; }
+    to { text-shadow: 0 0 15px #ff1493, 0 0 25px #ff1493; }
 }
-.btn {
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: 2px solid #ff1493;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.7rem;
-    transition: background 0.3s, transform 0.3s;
+
+#bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    mix-blend-mode: overlay;
+    animation: waveEffect 5s infinite alternate ease-in-out;
 }
+@keyframes waveEffect {
+    from { backdrop-filter: blur(5px) brightness(0.7); }
+    to { backdrop-filter: blur(10px) brightness(0.5); }
+}
+
 .btn:hover {
-    background: rgba(255, 255, 0, 0.4);
-    transform: scale(1.1);
+    animation: shake 0.3s ease-in-out;
 }
-.gallery {
-    display: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
 }
-.gallery-item {
-    width: 130px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    object-fit: cover;
+
+.parallax {
+    transform: translateY(0);
+    transition: transform 0.5s ease-in-out;
 }
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+.scrolling {
+    transform: translateY(-10px);
 }
-#love-date {
-    display: none;
-    font-size: 1rem;
-    text-align: center;
-    animation: fadeInUp 1.5s ease-in-out;
-    margin-top: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 12px;
-    border-radius: 10px;
-    color: #ff1493;
+.glitch {
+    font-size: 1.5rem;
     font-weight: bold;
-    transition: transform 0.3s;
-}
-#love-date:hover {
-    transform: scale(1.05);
-}
-.audio-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1;
-}
-.audio-controls button {
-    padding: 8px 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    border: 2px solid #ff1493;
-    font-size: 1rem;
-    color: #ff1493;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-}
-.audio-controls button:hover {
-    background: #ff1493;
     color: #fff;
-    transform: scale(1.1);
+    position: relative;
+    display: inline-block;
 }
-#iran-time {
-    position: fixed;
-    left: 10px;
-    bottom: 10px;
-    font-size: 0.8rem;
-    color: #fff;
-    font-weight: bold;
-    text-align: left;
-    font-family: 'Vazir', sans-serif;
-    z-index: 2;
-}
-/* منوی سه نقطه */
-.menu-btn {
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 30px;
-    cursor: pointer;
-    color: #fff;
-    z-index: 3;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
 }
-.menu {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    z-index: 3;
-    animation: slideDown 0.3s ease-out;
+.glitch::before {
+    color: cyan;
+    transform: translateX(-2px);
+    animation: glitch-animation 0.3s infinite alternate-reverse;
 }
-.menu a {
-    display: block;
-    color: #ff1493;
-    text-decoration: none;
-    padding: 8px;
-    margin: 5px 0;
-    font-size: 0.9rem;
+.glitch::after {
+    color: magenta;
+    transform: translateX(2px);
+    animation: glitch-animation 0.3s infinite alternate;
 }
-.menu a:hover {
-    background-color: rgba(255, 20, 147, 0.2);
-    transform: scale(1.05);
+@keyframes glitch-animation {
+    from { transform: translateX(-2px); }
+    to { transform: translateX(2px); }
 }
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes fadeInHeader {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    }
