@@ -29,13 +29,11 @@ function updateLoveDate() {
     const startDate = new Date('2022-03-21T00:00:00');
     const currentDate = new Date();
     const diff = new Date(currentDate - startDate);
-
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = diff.getUTCHours();
     const minutes = diff.getUTCMinutes();
     const seconds = diff.getUTCSeconds();
-
-    loveDateText.innerHTML = `ما قبل عید با هم آشنا شدیم. روزهای باهم بودن: ${days} روز، ${hours} ساعت، ${minutes} دقیقه، ${seconds} ثانیه`;
+    loveDateText.innerHTML = `ما قبل عید با هم آشنا شدیم و روزهای خوبی رو سپری کردیم. تاریخ: ${days} روز، ${hours} ساعت، ${minutes} دقیقه، ${seconds} ثانیه`;
 }
 
 setInterval(updateLoveDate, 1000);
@@ -45,7 +43,7 @@ function updateIranTime() {
         timeZone: 'Asia/Tehran', 
         year: 'numeric', 
         month: 'long', 
-        day: 'numeric' 
+        day: 'numeric'
     };
     const iranTimeNow = new Date().toLocaleString('fa-IR', options);
     iranTime.textContent = `تاریخ: ${iranTimeNow}`;
