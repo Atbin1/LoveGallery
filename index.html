@@ -10,6 +10,7 @@
 <body>
   <!-- ویدیو پس‌زمینه -->
   <video id="bg-video" autoplay loop muted>
+    <!-- مطابق نام فایل: rainy_shiraz.webm -->
     <source src="media/video/rainy_shiraz.webm" type="video/webm" />
     مرورگر شما از فرمت ویدئو پشتیبانی نمی‌کند.
   </video>
@@ -24,13 +25,17 @@
 
   <!-- گالری تصاویر -->
   <div class="gallery" id="gallery">
-    <img class="gallery-item" src="media/images/a7VcNRE9bE1oaXi7W70P3tPucf8QjSWhnKQC1PwcEV4J6B0Jw1.jpg_256X256X70.jpg" alt="تصویر 1">
-    <img class="gallery-item" src="media/images/atr-vial-100ml.jpg" alt="عطر ویال 100 میلی‌لیتر">
-    <img class="gallery-item" src="media/images/Buy-Price-Hello-Kitty-3D-Phone-Case-for-Xiaomi-Redmi-Note-9-Pro-Max-4.jpg" alt="تصویر قاب گوشی">
-    <img class="gallery-item" src="media/images/IMG_20241213_130606_224.jpg" alt="تصویر IMG">
-    <img class="gallery-item" src="media/images/RE-B53.jpg" alt="تصویر RE-B53">
-    <img class="gallery-item" src="media/images/saate-gardani.jpg" alt="ساعت گردنی">
-    <img class="gallery-item" src="media/images/142-عطر-ويال-۱۰-ميل.jpg" alt="عطر و ویال ۱۰ میل">
+    <!-- فقط دو عکسی که گفتید لود نمی‌شد را اینجا قرار می‌دهیم -->
+    <img
+      class="gallery-item"
+      src="media/images/atr-vial-100ml.jpg"
+      alt="عطر ویال 100 میلی‌لیتر"
+    />
+    <img
+      class="gallery-item"
+      src="media/images/saate-gardani.jpg"
+      alt="ساعت گردنی دخترانه"
+    />
   </div>
 
   <div id="love-date">
@@ -45,6 +50,7 @@
   <div class="audio-controls">
     <button onclick="toggleAudio()">🎵</button>
     <audio id="audio" loop>
+      <!-- مطابق نام فایل: haydeh_ahmad_hoosh.mp3 -->
       <source src="media/audio/haydeh_ahmad_hoosh.mp3" type="audio/mpeg" />
       مرورگر شما از فایل صوتی پشتیبانی نمی‌کند.
     </audio>
@@ -62,4 +68,4 @@
   <!-- فایل جاوااسکریپت -->
   <script src="js/script.js"></script>
 </body>
-        </html>
+  </html>
