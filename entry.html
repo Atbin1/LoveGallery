@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>صفحه ورود حنانه</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-        }
-        .bg-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;   
-            min-height: 100%;
-            z-index: -1;
-            object-fit: cover;
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .exit-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 20, 147, 0.7);
-            padding: 10px;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ورود موفق - حنانه</title>
+  <style>
+    @font-face {
+      font-family: 'Vazir';
+      src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+    }
+    body {
+      font-family: 'Vazir', sans-serif;
+      background: black;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+      color: #ff1493;
+    }
+    p {
+      font-size: 1rem;
+    }
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: blur(8px) brightness(0.6);
+    }
+  </style>
 </head>
 <body>
-    <!-- ویدئوی پس‌زمینه عاشقانه -->
-    <video autoplay muted loop class="bg-video">
-        <source src="https://atbin1.github.io/LoveGallery/media/video/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
-    </video>
-
-    <div class="content">
-        <h1>حنانه عزیزم</h1>
-        <p>تو زیباترین دلیل لبخند منی...</p>
-        <audio id="backgroundAudio" controls autoplay loop>
-            <source src="https://github.com/Atbin1/LoveGallery/raw/refs/heads/main/media/audio/Echo.mp3" type="audio/mp3">
-        </audio>
-    </div>
-
-    <button class="exit-btn" onclick="window.location.href='index.html'">خروج</button>
+  <video id="bg-video" autoplay loop muted>
+    <source src="https://atbin1.github.io/LoveGallery/media/video/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
+  </video>
+  <h1>خوش آمدی حنانه</h1>
+  <p>صفحه ورود موفق</p>
+  <audio id="newAudio" autoplay loop>
+    <source src="https://github.com/Atbin1/LoveGallery/raw/refs/heads/main/media/audio/Echo.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    // تلاش برای پخش خودکار صدا (ممکن است به تعامل کاربر نیاز داشته باشد)
+    window.addEventListener('load', function(){
+      var newAudio = document.getElementById('newAudio');
+      newAudio.play().catch(function(error) {
+        console.log('خطا در پخش خودکار صدا:', error);
+      });
+    });
+  </script>
 </body>
 </html>
