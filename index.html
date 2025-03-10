@@ -1,259 +1,145 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ورود حنانه</title>
-  <style>
-    @font-face {
-      font-family: 'Vazir';
-      src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
-    }
-    body {
-      font-family: 'Vazir', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
-      text-align: center;
-    }
-    /* استایل منو */
-    .menu-btn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      font-size: 24px;
-    }
-    .menu {
-      display: none;
-      position: fixed;
-      top: 40px;
-      right: 10px;
-      background: rgba(255, 20, 147, 0.8);
-      padding: 10px;
-      border-radius: 5px;
-    }
-    .menu a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      margin: 5px 0;
-    }
-    /* استایل پنجره ورود */
-    .login-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.9);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      z-index: 1000;
-    }
-    .popup-content input, .popup-content button {
-      margin: 10px;
-      padding: 10px;
-    }
-    /* استایل صفحه ویژه حنانه */
-    #hananeh-page {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-    }
-    #bg-video {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.7;
-    }
-    #love-message {
-      font-size: 1.5rem;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 15px;
-      border-radius: 15px;
-      color: #ff1493;
-      font-weight: bold;
-      margin-top: 20%;
-    }
-    /* دکمه خروج */
-    .exit-btn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: rgba(255, 20, 147, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-    }
-    /* استایل‌های جدید برای مدال ورود با انیمیشن */
-    .modal {
-      display: none; /* به صورت پیش‌فرض مخفی است */
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7); /* پس‌زمینه نیمه شفاف */
-      animation: fadeIn 0.5s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 400px;
-      border-radius: 10px;
-      animation: slideIn 0.5s;
-    }
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover,
-    .close:focus {
-      color: #000;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود حنانه</title>
+    <style>
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+        }
+        body {
+            font-family: 'Vazir', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            text-align: center;
+        }
+        /* استایل منو */
+        .menu-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .menu {
+            display: none;
+            position: fixed;
+            top: 40px;
+            right: 10px;
+            background: rgba(255, 20, 147, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        /* استایل مدال ورود */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            color: black;
+            animation: slideIn 0.5s;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover, .close:focus {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
-  <!-- دکمه منو -->
-  <div class="menu-btn" onclick="toggleMenu()">&#x2022;&#x2022;&#x2022;</div>
-  <!-- منو -->
-  <div class="menu" id="menu">
-      <a href="#" onclick="openLogin()">ورود حنانه</a>
-  </div>
-  <!-- پنجره ورود -->
-  <div id="login-popup" class="login-popup">
-      <div class="popup-content">
-          <h2>رمز ورود را وارد کنید</h2>
-          <input type="password" id="password-input" placeholder="رمز عبور">
-          <button onclick="checkPassword()">ورود</button>
-          <button onclick="closeLogin()">بستن</button>
-          <p id="error-message" style="color: red; display: none;">رمز اشتباه است!</p>
-      </div>
-  </div>
-  <!-- صفحه اختصاصی حنانه -->
-  <div id="hananeh-page">
-      <video id="bg-video" autoplay loop muted>
-          <source src="https://atbin1.github.io/LoveGallery/media/video/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
-      </video>
-      <div id="love-message">
-          حنانه عزیزم، تو زیباترین دلیل لبخند منی...
-      </div>
-      <button class="exit-btn" onclick="closeHananeh()">خروج</button>
-      <audio id="love-audio" autoplay loop>
-          <source src="https://atbin1.github.io/LoveGallery/media/audio/Haydeh%20x%20Ahmad%20Solo%20Hosh%20Masnoei%20(1).mp3" type="audio/mpeg">
-      </audio>
-  </div>
-  
-  <!-- محتوای جدید برای صفحه اصلی سایت (عکس‌ها، گرافیک‌ها و سایر المان‌ها) -->
-  <header>
-    <h1>سایت من</h1>
-  </header>
-  <section>
-    <img src="path/to/your/image.jpg" alt="تصویر نمونه">
-    <!-- سایر المان‌های سایت شما -->
-  </section>
-  <!-- دکمه یا منوی سه نقطه -->
-  <div id="three-dots" style="cursor: pointer; font-size: 24px; padding: 10px;">
-    &#8230;
-  </div>
-  <!-- مدال ورود جدید (با انیمیشن) -->
-  <div id="passwordModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h2>ورود حنانه</h2>
-      <p>لطفاً رمز ورود را وارد کنید:</p>
-      <input type="password" id="passwordInput" placeholder="رمز ورود" style="width: 100%; padding: 8px; margin: 10px 0;">
-      <button id="submitPassword" style="padding: 10px 20px; cursor: pointer;">ورود</button>
-      <p id="errorMsg" style="color:red; display:none; margin-top:10px;">رمز اشتباه است</p>
+    <!-- دکمه منو -->
+    <div class="menu-btn" onclick="toggleMenu()">&#x2022;&#x2022;&#x2022;</div>
+    <!-- منو -->
+    <div class="menu" id="menu">
+        <a href="#" onclick="openLogin()">ورود حنانه</a>
     </div>
-  </div>
-  
-  <script>
-    function toggleMenu() {
-        var menu = document.getElementById("menu");
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-    
-    function openLogin() {
-        document.getElementById("login-popup").style.display = "block";
-    }
-    
-    function closeLogin() {
-        document.getElementById("login-popup").style.display = "none";
-    }
-    
-    function checkPassword() {
-        const password = document.getElementById("password-input").value;
-        if (password === "hananeh_h.m3") {
-            document.getElementById("login-popup").style.display = "none";
-            document.getElementById("hananeh-page").style.display = "block";
-        } else {
-            document.getElementById("error-message").style.display = "block";
+    <!-- مدال ورود -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>ورود حنانه</h2>
+            <p>لطفاً رمز ورود را وارد کنید:</p>
+            <input type="password" id="passwordInput" placeholder="رمز ورود" style="width: 100%; padding: 8px; margin: 10px 0;">
+            <button id="submitPassword" style="padding: 10px 20px; cursor: pointer;">ورود</button>
+            <p id="errorMsg" style="color:red; display:none; margin-top:10px;">رمز اشتباه است</p>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
         }
-    }
-    
-    function closeHananeh() {
-        document.getElementById("hananeh-page").style.display = "none";
-    }
-    
-    // کد مربوط به مدال ورود جدید
-    const threeDots = document.getElementById('three-dots');
-    const modal = document.getElementById('passwordModal');
-    const closeModal = document.getElementById('closeModal');
-    const submitPassword = document.getElementById('submitPassword');
-    const passwordInput = document.getElementById('passwordInput');
-    const errorMsg = document.getElementById('errorMsg');
 
-    threeDots.addEventListener('click', () => {
-      modal.style.display = 'block';
-    });
+        // دریافت المان‌های مورد نیاز
+        const modal = document.getElementById('passwordModal');
+        const closeModal = document.getElementById('closeModal');
+        const submitPassword = document.getElementById('submitPassword');
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMsg = document.getElementById('errorMsg');
 
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-      passwordInput.value = '';
-      errorMsg.style.display = 'none';
-    });
+        function openLogin() {
+            modal.style.display = 'block';
+        }
 
-    submitPassword.addEventListener('click', () => {
-      const correctPassword = 'hananeh_h.m3';
-      if (passwordInput.value === correctPassword) {
-        // هدایت به فایل جدا entry.html
-        window.location.href = 'entry.html';
-      } else {
-        errorMsg.style.display = 'block';
-      }
-    });
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            passwordInput.value = '';
+            errorMsg.style.display = 'none';
+        });
 
-    passwordInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        submitPassword.click();
-      }
-    });
-  </script>
+        submitPassword.addEventListener('click', () => {
+            const correctPassword = 'hananeh_h.m3';
+            if (passwordInput.value === correctPassword) {
+                window.location.href = 'entry.html';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitPassword.click();
+            }
+        });
+    </script>
 </body>
-    </html>
+</html>
