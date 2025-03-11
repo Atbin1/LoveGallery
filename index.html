@@ -244,6 +244,7 @@
       border: none;
       border-radius: 5px;
       text-align: center;
+      transition: border-color 0.3s;
     }
     .modal-content button {
       padding: 8px 12px;
@@ -397,9 +398,7 @@
     function checkPassword() {
       const pwd = document.getElementById('passwordInput').value;
       if(pwd === "hananeh_h.m3") {
-        // متوقف کردن صدای فعلی
         audio.pause();
-        // هدایت به صفحه Entry.html
         window.location.href = "Entry.html";
       } else {
         document.getElementById('errorMessage').style.display = 'block';
@@ -407,12 +406,15 @@
     }
     function togglePasswordVisibility() {
       var passwordInput = document.getElementById('passwordInput');
+      var toggleIcon = document.getElementById('togglePassword');
       if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
+        toggleIcon.textContent = "🙈";
       } else {
         passwordInput.type = 'password';
+        toggleIcon.textContent = "👁️";
       }
     }
   </script>
 </body>
-      </html>
+  </html>
