@@ -178,7 +178,7 @@
         opacity: 0;
         transform: translateY(20px);
       }
-      to {
+      to { 
         opacity: 1;
         transform: translateY(0);
       }
@@ -218,21 +218,23 @@
       to { opacity: 1; }
     }
     .modal-content {
-      background-color: #222;
+      background: linear-gradient(135deg, #222, #444);
       margin: 15% auto;
       padding: 20px;
       border: 1px solid #888;
       width: 80%;
       max-width: 300px;
       text-align: center;
-      border-radius: 10px;
+      border-radius: 15px;
       color: #fff;
       position: relative;
-      animation: slideDownModal 0.5s;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+      transform: scale(0.8);
+      animation: scaleIn 0.5s forwards;
     }
-    @keyframes slideDownModal {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
     .modal-content input[type="password"],
     .modal-content input[type="text"] {
@@ -263,7 +265,7 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-    /* استایل برای فیلد رمز عبور با آیکون چشم */
+    /* استایل فیلد رمز عبور با آیکون چشم */
     .password-container {
       position: relative;
       width: 100%;
@@ -280,15 +282,16 @@
       transform: translateY(-50%);
       cursor: pointer;
       user-select: none;
+      transition: transform 0.3s;
     }
-    /* انیمیشن‌های اضافی برای مدال */
-    .modal-content {
-      animation: slideDownModal 0.5s ease-out;
+    #togglePassword:hover {
+      transform: translateY(-50%) scale(1.2);
     }
   </style>
 </head>
 <body>
-  <video id="bg-video" autoplay loop muted>
+  <!-- ویدئوی پس‌زمینه با ویژگی poster -->
+  <video id="bg-video" autoplay loop muted poster="https://via.placeholder.com/800x600/000000/ff1493?text=گالری+عشق">
     <source src="https://atbin1.github.io/LoveGallery/media/video/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
   </video>
   <header>تقدیم به حنانه</header>
@@ -406,4 +409,4 @@
     }
   </script>
 </body>
-    </html>
+      </html>
