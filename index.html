@@ -234,8 +234,9 @@
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    .modal-content input[type="password"] {
-      width: 80%;
+    .modal-content input[type="password"],
+    .modal-content input[type="text"] {
+      width: 100%;
       padding: 10px;
       margin: 10px 0;
       border: none;
@@ -261,6 +262,28 @@
       right: 15px;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+    /* استایل برای فیلد رمز عبور با آیکون چشم */
+    .password-container {
+      position: relative;
+      width: 100%;
+      margin: 10px 0;
+    }
+    .password-container input {
+      width: 100%;
+      padding-right: 40px;
+    }
+    #togglePassword {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      user-select: none;
+    }
+    /* انیمیشن‌های اضافی برای مدال */
+    .modal-content {
+      animation: slideDownModal 0.5s ease-out;
     }
   </style>
 </head>
@@ -302,7 +325,10 @@
     <div class="modal-content">
       <span class="close" onclick="closeLoginModal()">&times;</span>
       <h2>ورود حنانه</h2>
-      <input type="password" id="passwordInput" placeholder="رمز عبور">
+      <div class="password-container">
+        <input type="password" id="passwordInput" placeholder="رمز عبور">
+        <span id="togglePassword" onclick="togglePasswordVisibility()">👁️</span>
+      </div>
       <button onclick="checkPassword()">ورود</button>
       <p id="errorMessage" style="color: red; display: none;">رمز عبور اشتباه است</p>
     </div>
@@ -368,6 +394,14 @@
         window.location.href = "Entry.html";
       } else {
         document.getElementById('errorMessage').style.display = 'block';
+      }
+    }
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById('passwordInput');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
       }
     }
   </script>
