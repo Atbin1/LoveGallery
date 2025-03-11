@@ -275,6 +275,12 @@
       width: 100%;
       padding-right: 40px;
     }
+    /* انیمیشن چشم */
+    @keyframes eyePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
     #togglePassword {
       position: absolute;
       right: 10px;
@@ -285,7 +291,7 @@
       transition: transform 0.3s;
     }
     #togglePassword:hover {
-      transform: translateY(-50%) scale(1.2);
+      animation: eyePulse 0.5s infinite;
     }
   </style>
 </head>
