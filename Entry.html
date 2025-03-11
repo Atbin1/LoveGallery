@@ -43,7 +43,7 @@
       z-index: -2;
       filter: blur(8px) brightness(0.6);
     }
-    /* قلب‌های شناور برای انیمیشن */
+    /* قلب‌های شناور */
     .heart {
       position: fixed;
       bottom: -50px;
@@ -76,6 +76,26 @@
       display: block;
       background: transparent;
     }
+    /* دکمه پرش برای موبایل */
+    #jumpButton {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background: #ff1493;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 3;
+    }
+    @media (min-width: 601px) {
+      #jumpButton {
+        display: none;
+      }
+    }
     @media (max-width: 600px) {
       #gameContainer {
          aspect-ratio: 4 / 1;
@@ -96,6 +116,7 @@
   <!-- کانتینر بازی -->
   <div id="gameContainer">
     <canvas id="gameCanvas"></canvas>
+    <button id="jumpButton" onclick="handleJump()">پرش</button>
   </div>
   <script>
     // پخش خودکار صدا
@@ -128,9 +149,9 @@
     const baseWidth = 800;
     const baseHeight = 300;
     let currentScale = 1;
-    let groundLevel = baseHeight - 30; // مقدار اولیه (بروزرسانی در resizeGame)
+    let groundLevel = baseHeight - 30;
 
-    // اشیاء بازی (در اندازه‌های نسبی به اندازه اولیه)
+    // اشیاء بازی (با اندازه‌های نسبی)
     const boy = { x: 100, y: 0, width: 30, height: 40, velocityY: 0, jumpPower: 10, gravity: 0.5, isJumping: false };
     const girl = { x: 30, y: 0, width: 30, height: 50 };
     const mosque = { x: 0, y: 0, width: 50, height: 60 };
@@ -149,19 +170,16 @@
       currentScale = canvas.width / baseWidth;
       groundLevel = canvas.height - 30 * currentScale;
       
-      // به‌روزرسانی موقعیت و اندازه پسر
       boy.x = 100 * currentScale;
       boy.width = 30 * currentScale;
       boy.height = 40 * currentScale;
       boy.y = groundLevel - boy.height;
       
-      // به‌روزرسانی موقعیت و اندازه دختر
       girl.x = 30 * currentScale;
       girl.width = 30 * currentScale;
       girl.height = 50 * currentScale;
       girl.y = groundLevel - girl.height;
       
-      // به‌روزرسانی موقعیت و اندازه مسجد
       mosque.x = canvas.width - 80 * currentScale;
       mosque.width = 50 * currentScale;
       mosque.height = 60 * currentScale;
@@ -183,7 +201,7 @@
       });
     }
 
-    // تابع بررسی برخورد
+    // بررسی برخورد
     function isColliding(rect1, rect2) {
       return (
         rect1.x < rect2.x + rect2.width &&
@@ -197,7 +215,6 @@
     function update(deltaTime) {
       if (gameOver) return;
       
-      // به‌روزرسانی پسر (جابجایی با گرانش)
       boy.velocityY += boy.gravity;
       boy.y += boy.velocityY;
       if (boy.y > groundLevel - boy.height) {
@@ -206,14 +223,12 @@
         boy.isJumping = false;
       }
       
-      // ایجاد موانع
       obstacleTimer += deltaTime;
       if (obstacleTimer > obstacleInterval) {
         spawnObstacle();
         obstacleTimer = 0;
       }
       
-      // به‌روزرسانی موانع
       obstacles.forEach((obstacle, index) => {
         obstacle.x -= obstacle.speed;
         if (obstacle.x + obstacle.width < 0) {
@@ -229,42 +244,34 @@
     // رسم بازی
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // رسم زمین
       ctx.fillStyle = "#555";
       ctx.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
       
-      // رسم دختر (با برچسب)
       ctx.fillStyle = "#a0522d";
       ctx.fillRect(girl.x, girl.y, girl.width, girl.height);
       ctx.fillStyle = "#fff";
       ctx.font = (12 * currentScale) + "px Vazir";
       ctx.fillText("دختر", girl.x, girl.y - 5 * currentScale);
       
-      // رسم مسجد (به عنوان هدف)
       ctx.fillStyle = "#808080";
       ctx.fillRect(mosque.x, mosque.y, mosque.width, mosque.height);
       ctx.fillStyle = "#fff";
       ctx.fillText("مسجد", mosque.x, mosque.y - 5 * currentScale);
       
-      // رسم پسر
       ctx.fillStyle = "#1e90ff";
       ctx.fillRect(boy.x, boy.y, boy.width, boy.height);
       ctx.fillStyle = "#fff";
       ctx.fillText("پسر", boy.x, boy.y - 5 * currentScale);
       
-      // رسم موانع
       ctx.fillStyle = "#ff4500";
       obstacles.forEach(obstacle => {
         ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
       });
       
-      // نمایش امتیاز با آیکون قلب
       ctx.fillStyle = "#fff";
       ctx.font = (16 * currentScale) + "px Vazir";
       ctx.fillText("❤️ " + score, canvas.width - 120 * currentScale, 20 * currentScale);
       
-      // در صورت باخت، پیام پایان بازی
       if (gameOver) {
         ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -298,6 +305,13 @@
         boy.isJumping = true;
       }
     });
+    // تابع پرش دکمه موبایلی
+    function handleJump() {
+      if (!boy.isJumping && !gameOver) {
+        boy.velocityY = -boy.jumpPower * currentScale;
+        boy.isJumping = true;
+      }
+    }
   </script>
 </body>
-</html>
+  </html>
