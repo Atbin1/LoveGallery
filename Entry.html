@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ورود موفق - حنانه</title>
+  <title> گالری دوم </title>
   <style>
     @font-face {
       font-family: 'Vazir';
@@ -20,6 +20,8 @@
       margin: 0;
       flex-direction: column;
       text-align: center;
+      overflow: hidden;
+      position: relative;
     }
     h1 {
       font-size: 2rem;
@@ -40,11 +42,23 @@
       z-index: -1;
       filter: blur(8px) brightness(0.6);
     }
+    /* استایل برای قلب‌های شناور */
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 2rem;
+      animation: floatUp 5s linear forwards;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
   </style>
 </head>
 <body>
   <video id="bg-video" autoplay loop muted>
-    <source src="https://atbin1.github.io/LoveGallery/media/video/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
+    <source src="https://atbin1.github.io/LoveGallery/media/video/Beautiful_Night_Sky.webm" type="video/webm">
   </video>
   <h1>خوش آمدی حنانه</h1>
   <p>صفحه ورود موفق</p>
@@ -59,6 +73,20 @@
         console.log('خطا در پخش خودکار صدا:', error);
       });
     });
+
+    // ایجاد قلب‌های شناور برای سرگرمی
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+    setInterval(createHeart, 800);
   </script>
 </body>
 </html>
