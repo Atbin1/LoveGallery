@@ -11,7 +11,7 @@
     }
     body {
       font-family: 'Vazir', sans-serif;
-      background: black;
+      background: #000;
       color: #fff;
       display: flex;
       justify-content: center;
@@ -24,15 +24,19 @@
       position: relative;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 20px;
       text-shadow: 0 0 10px rgba(0,0,0,0.8);
       color: #ff1493;
+      z-index: 4;
+      position: relative;
     }
     p {
-      font-size: 1rem;
+      font-size: 1.2rem;
+      z-index: 4;
+      position: relative;
     }
-    /* ویدئوی پس‌زمینه با ویژگی poster */
+    /* پس‌زمینه ویدئویی */
     #bg-video {
       position: fixed;
       top: 0;
@@ -40,8 +44,18 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
+      z-index: -3;
       filter: blur(8px) brightness(0.6);
+    }
+    /* لایه گرادیانت بر روی ویدئو */
+    #videoOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,20,147,0.3), rgba(30,144,255,0.3));
+      z-index: -2;
     }
     /* قلب‌های شناور */
     .heart {
@@ -50,12 +64,13 @@
       font-size: 2rem;
       animation: floatUp 5s linear forwards;
       pointer-events: none;
+      z-index: 3;
     }
     @keyframes floatUp {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(-100vh); opacity: 0; }
     }
-    /* استایل کانتینر بازی ریسپانسیو */
+    /* استایل کانتینر بازی */
     #gameContainer {
       position: absolute;
       bottom: 50px;
@@ -68,7 +83,8 @@
       border: 2px solid #ff1493;
       border-radius: 10px;
       overflow: hidden;
-      z-index: 2;
+      z-index: 4;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
     }
     #gameCanvas {
       width: 100%;
@@ -89,7 +105,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      z-index: 3;
+      z-index: 5;
     }
     @media (min-width: 601px) {
       #jumpButton {
@@ -104,20 +120,24 @@
   </style>
 </head>
 <body>
-  <!-- ویدئوی پس‌زمینه با poster بهبود یافته -->
+  <!-- پس‌زمینه ویدئویی -->
   <video id="bg-video" autoplay loop muted poster="https://via.placeholder.com/800x600/000000/ff1493?text=ورود+موفق">
     <source src="https://atbin1.github.io/LoveGallery/media/video/Beautiful_Night_Sky.webm" type="video/webm">
   </video>
+  <div id="videoOverlay"></div>
+  
   <h1>خوش آمدی حنانه</h1>
   <p>صفحه ورود موفق</p>
   <audio id="newAudio" autoplay loop>
     <source src="https://github.com/Atbin1/LoveGallery/raw/refs/heads/main/media/audio/Echo.mp3" type="audio/mpeg">
   </audio>
+  
   <!-- کانتینر بازی -->
   <div id="gameContainer">
     <canvas id="gameCanvas"></canvas>
     <button id="jumpButton" onclick="handleJump()">پرش</button>
   </div>
+  
   <script>
     // پخش خودکار صدا
     window.addEventListener('load', function(){
@@ -126,6 +146,7 @@
         console.log('خطا در پخش خودکار صدا:', error);
       });
     });
+    
     // ایجاد قلب‌های شناور
     function createHeart() {
       const heart = document.createElement('div');
@@ -134,24 +155,29 @@
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
       document.body.appendChild(heart);
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
+      setTimeout(() => { heart.remove(); }, 5000);
     }
     setInterval(createHeart, 800);
-
+    
     /* ------------------------
-       کد بازی runner ریسپانسیو
+       کد بازی Runner
        ------------------------ */
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-
     const baseWidth = 800;
     const baseHeight = 300;
     let currentScale = 1;
     let groundLevel = baseHeight - 30;
-
-    // اشیاء بازی (با اندازه‌های نسبی)
+    
+    // تصاویر کاراکترها (تصاویر جایگزین - می‌توانید با تصاویر واقعی تغییر دهید)
+    const imgGirl = new Image();
+    imgGirl.src = 'https://dummyimage.com/30x50/ff1493/ffffff&text=دختر';
+    const imgBoy = new Image();
+    imgBoy.src = 'https://dummyimage.com/30x40/1e90ff/ffffff&text=پسر';
+    const imgMosque = new Image();
+    imgMosque.src = 'https://dummyimage.com/50x60/808080/ffffff&text=مسجد';
+    
+    // اشیاء بازی
     const boy = { x: 100, y: 0, width: 30, height: 40, velocityY: 0, jumpPower: 10, gravity: 0.5, isJumping: false };
     const girl = { x: 30, y: 0, width: 30, height: 50 };
     const mosque = { x: 0, y: 0, width: 50, height: 60 };
@@ -161,7 +187,7 @@
     let lastTime = 0;
     let gameOver = false;
     let score = 0;
-
+    
     // تابع تغییر اندازه بازی (ریسپانسیو)
     function resizeGame() {
       const container = document.getElementById('gameContainer');
@@ -187,7 +213,7 @@
     }
     window.addEventListener('resize', resizeGame);
     resizeGame();
-
+    
     // تابع ایجاد مانع جدید
     function spawnObstacle() {
       let obstacleWidth = (Math.random() * 20 + 20) * currentScale;
@@ -200,7 +226,7 @@
         speed: 3 * currentScale
       });
     }
-
+    
     // بررسی برخورد
     function isColliding(rect1, rect2) {
       return (
@@ -210,7 +236,7 @@
         rect1.y + rect1.height > rect2.y
       );
     }
-
+    
     // به‌روزرسانی بازی
     function update(deltaTime) {
       if (gameOver) return;
@@ -240,38 +266,58 @@
         }
       });
     }
-
+    
     // رسم بازی
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // رسم زمین
       ctx.fillStyle = "#555";
       ctx.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
       
-      ctx.fillStyle = "#a0522d";
-      ctx.fillRect(girl.x, girl.y, girl.width, girl.height);
+      // رسم دختر (با تصویر در صورت لود شدن)
+      if (imgGirl.complete) {
+        ctx.drawImage(imgGirl, girl.x, girl.y, girl.width, girl.height);
+      } else {
+        ctx.fillStyle = "#a0522d";
+        ctx.fillRect(girl.x, girl.y, girl.width, girl.height);
+      }
       ctx.fillStyle = "#fff";
       ctx.font = (12 * currentScale) + "px Vazir";
       ctx.fillText("دختر", girl.x, girl.y - 5 * currentScale);
       
-      ctx.fillStyle = "#808080";
-      ctx.fillRect(mosque.x, mosque.y, mosque.width, mosque.height);
+      // رسم مسجد
+      if (imgMosque.complete) {
+        ctx.drawImage(imgMosque, mosque.x, mosque.y, mosque.width, mosque.height);
+      } else {
+        ctx.fillStyle = "#808080";
+        ctx.fillRect(mosque.x, mosque.y, mosque.width, mosque.height);
+      }
       ctx.fillStyle = "#fff";
       ctx.fillText("مسجد", mosque.x, mosque.y - 5 * currentScale);
       
-      ctx.fillStyle = "#1e90ff";
-      ctx.fillRect(boy.x, boy.y, boy.width, boy.height);
+      // رسم پسر
+      if (imgBoy.complete) {
+        ctx.drawImage(imgBoy, boy.x, boy.y, boy.width, boy.height);
+      } else {
+        ctx.fillStyle = "#1e90ff";
+        ctx.fillRect(boy.x, boy.y, boy.width, boy.height);
+      }
       ctx.fillStyle = "#fff";
       ctx.fillText("پسر", boy.x, boy.y - 5 * currentScale);
       
+      // رسم موانع
       ctx.fillStyle = "#ff4500";
       obstacles.forEach(obstacle => {
         ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
       });
       
+      // رسم امتیاز
       ctx.fillStyle = "#fff";
       ctx.font = (16 * currentScale) + "px Vazir";
       ctx.fillText("❤️ " + score, canvas.width - 120 * currentScale, 20 * currentScale);
       
+      // در صورت پایان بازی، نمایش پیام پایان
       if (gameOver) {
         ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -282,7 +328,7 @@
         ctx.fillText("برای ریست، F5 را بزنید", canvas.width / 2 - 100 * currentScale, canvas.height / 2 + 40 * currentScale);
       }
     }
-
+    
     // حلقه بازی
     function gameLoop(timestamp) {
       if (!lastTime) lastTime = timestamp;
@@ -297,14 +343,15 @@
       }
     }
     requestAnimationFrame(gameLoop);
-
-    // کنترل پریدن با کلید Space
+    
+    // کنترل پرش با کلید Space
     document.addEventListener("keydown", function(e) {
       if (e.code === "Space" && !boy.isJumping && !gameOver) {
         boy.velocityY = -boy.jumpPower * currentScale;
         boy.isJumping = true;
       }
     });
+    
     // تابع پرش دکمه موبایلی
     function handleJump() {
       if (!boy.isJumping && !gameOver) {
