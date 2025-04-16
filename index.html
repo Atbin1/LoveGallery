@@ -55,12 +55,48 @@
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.6);
     }
-    h1 {
-      font-size: 1.1rem;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-      animation: fadeIn 2s ease-in-out;
-      color: #ff1493;
+    /* افکت گرادیانی متحرک برای تیتر */
+    .cool-effect {
+      position: relative;
+      font-size: 1.5rem;  /* سایز بزرگ‌تر شده */
       margin-top: 20px;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      background-image: linear-gradient(90deg, #ff1493, #ff8c00, #1e90ff, #ff1493);
+      background-size: 400%;
+      animation: textClip 5s linear infinite;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+    /* قلب کوچک بالای تیتر */
+    .cool-effect::before {
+      content: "♥";
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #ff1493;
+      animation: bounce 1.5s infinite alternate;
+    }
+    @keyframes textClip {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    @keyframes bounce {
+      from {
+        transform: translate(-50%, 0);
+      }
+      to {
+        transform: translate(-50%, -10px);
+      }
     }
     .btn-container {
       display: flex;
@@ -183,22 +219,26 @@
         transform: translateY(0);
       }
     }
-    /* دکمه ورود حنانه در بالا سمت چپ */
+    /* دکمه ورود حنانه (بروزرسانی شده به ظاهر مدرن‌تر) */
     .login-btn {
       position: fixed;
       top: 10px;
       left: 10px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff1493, #ff8c00);
       color: #fff;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       cursor: pointer;
       z-index: 4;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .login-btn:hover {
       transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
     }
     /* استایل مدال ورود */
     .modal {
@@ -302,7 +342,7 @@
     <source src="https://atbin1.github.io/LoveGallery/media/video/Rainy_weather_in_Shiraz_%D9%87%D9%88%D8%A7%DB%8C_%D8%A8%D8%A7%D8%B1%D9%88%D9%86%DB%8C_%D8%B4%DB%8C%D8%B1%D8%A7%D8%B2_%E2%98%94%EF%B8%8F%F0%9F%8C%A7.webm" type="video/webm">
   </video>
   <header>تقدیم به حنانه</header>
-  <h1>به گالری عشق خوش آمدید</h1>
+  <h1 class="cool-effect">به گالری عشق خوش آمدید</h1>
   <div class="btn-container">
     <button class="btn" onclick="toggleGallery()">نمایش گالری</button>
     <button class="btn" onclick="showLoveDate()">تاریخ عاشقی</button>
@@ -417,4 +457,4 @@
     }
   </script>
 </body>
-  </html>
+        </html>
